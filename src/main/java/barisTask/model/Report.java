@@ -29,7 +29,6 @@ public class Report {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
-    @Column(length = 16, nullable = false, updatable = false)
     private String id;
     private String patientName;
     private String patientlastName;

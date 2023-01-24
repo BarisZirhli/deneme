@@ -21,12 +21,11 @@ import org.hibernate.annotations.GenericGenerator;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Patient  {
+public class Patient {
 
-   @Id
+    @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
-    @Column(length = 16, nullable = false, updatable = false)
     private String id;
     private String name;
     private String lastName;
@@ -34,5 +33,5 @@ public class Patient  {
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Report> reports;
+    private List<Report> report;
 }
