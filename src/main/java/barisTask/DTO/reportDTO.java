@@ -1,4 +1,4 @@
-package barisTask.userDTO;
+package barisTask.DTO;
 
 import java.util.Date;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package barisTask.userDTO;
+package barisTask.DTO;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
