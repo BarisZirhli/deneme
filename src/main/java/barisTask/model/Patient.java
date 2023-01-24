@@ -2,15 +2,13 @@ package barisTask.model;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
-
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import java.io.Serializable;
 import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,21 +21,18 @@ import org.hibernate.annotations.GenericGenerator;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Patient implements Serializable{
+public class Patient  {
 
-    private static final long serialVersionUID = 1L;
-
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(columnDefinition = "CHAR(32)")
-    @Id
-
+   @Id
+    @GenericGenerator(name = "uuid2", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
+    @Column(length = 16, nullable = false, updatable = false)
     private String id;
     private String name;
     private String lastName;
     private String email;
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "patients")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Report> reports;
 }
