@@ -4,12 +4,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class testController {
+public class PageController {
 
-    @GetMapping("/home")
-    public String page() {
+    @GetMapping("/register")
+    public String register() {
         //model.addAttribute("attribute", "value");
-        return "baris.html";
+        return "register";
+    }
+    
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 
 }
