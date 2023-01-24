@@ -7,7 +7,7 @@ public interface patientRepository extends JpaRepository<Patient, String> {
 
     public Patient savePatient(Patient item);
 
-    public Patient findUserId(String item);
+    public Patient findPatientId(String item);
 
     public Patient addPatient(Patient item);
 

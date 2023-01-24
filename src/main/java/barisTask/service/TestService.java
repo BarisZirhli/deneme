@@ -16,14 +16,14 @@ public class TestService {
         this.patient = patient;
     }
 
-    private Patient findUserId(String x) throws Exception {
+    private Patient findPatientId(String x) throws Exception {
         return patient.findById(x).orElseThrow(() -> {
             return new Exception("not found patient" + x);
 
         });
     }
 
-    private Patient addPatient(Patient x) {
+    private Patient savePatient(Patient x) {
 
         x.setId(UUID.randomUUID().toString());
         return patient.save(x);
