@@ -1,34 +1,45 @@
 package barisTask.service;
 
+import barisTask.DTO.PatientDTO;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import barisTask.model.Patient;
 import org.apache.jackrabbit.uuid.UUID;
 import barisTask.repository.PatientRepository;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
 @NoArgsConstructor
 public class PatientServiceImp {
 
-    private PatientRepository patient;
+    @Autowired
+    private PatientRepository PatientRepository;
+    private PatientDTO PatientDTO;
 
-    public PatientServiceImp(PatientRepository patient) {
-        this.patient = patient;
-    }
-
-    public Optional<Patient> findPatientId(String x) {
-        return patient.findById(x);
+    public Patient findPatientId(String x) {
+        Optional<Patient> p = PatientRepository.findById(x);
+        Patient patient = p.get();
+        return patient;
     }
 
     public Patient savePatient(Patient x) {
 
         x.setId(UUID.randomUUID().toString());
-        return patient.save(x);
+        return PatientRepository.save(x);
     }
 
     public void deletePatient(Patient x) {
-        patient.delete(x);
+        PatientRepository.delete(x);
+    }
+
+    public PatientDTO convertPatientDTO(Patient p) {
+
+        PatientDTO.setName(p.getName());
+        PatientDTO.setPassword(p.getPassword());
+        PatientDTO.setEmail(p.getEmail());
+        PatientRepository.save(p);
+        return new PatientDTO();
     }
 
 }
