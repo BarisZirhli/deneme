@@ -24,7 +24,8 @@ public class PatientController {
     }
 
     @GetMapping("/register")
-    public String registerGET(Model model, Patient p) {
+    public String registerGET(Model model) {
+        Patient p = new Patient();
         patientDTO = PatienceService.convertPatientDTO(p);
         model.addAttribute("patient", patientDTO);
         return "register";

@@ -14,6 +14,7 @@ import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ import org.hibernate.annotations.GenericGenerator;
 @Setter
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class Patient {
 
     @Id
