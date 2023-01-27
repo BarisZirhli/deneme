@@ -7,7 +7,7 @@ public interface PatientService {
 
     public Patient savePatient(Patient item);
 
-    public Optional<Patient> findPatientId(String item);
+    public Patient findPatientId(String item);
 
     public void deletePatient(Patient item);
 
