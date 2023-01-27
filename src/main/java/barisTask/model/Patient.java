@@ -38,13 +38,22 @@ public class Patient {
     @SuppressWarnings("deprecation")
     private String id;
     private String name;
-    private String lastName;
     @Email(message="Not Proper Email")
     @NotEmpty(message ="Not Empty")
     private String email;
     private String password;
-    private String repeatPassword;
 
+    public Patient(String id, String name, String email, String password, String repeatPassword) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.repeatPassword = repeatPassword;
+    }
+
+    private String repeatPassword;
+    
+    
     @AssertTrue(message = "Passwords should have been match")
     public boolean isPasswordsEqual() {
         return (password == null) ? false : password.equals(repeatPassword);

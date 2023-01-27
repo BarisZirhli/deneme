@@ -24,10 +24,15 @@ public class PatientServiceImp implements PatientService {
     }
 
     @Override
-    public Patient savePatient(Patient x) {
-
+    public PatientDTO savePatient(Patient x) {
+        Patient patient = new Patient(x.getName(),
+                x.getEmail(),
+                x.getPassword(),
+                x.getId(),
+                x.getRepeatPassword());
         x.setId(UUID.randomUUID().toString());
-        return PatientRepository.save(x);
+
+        return convertPatientDTO(PatientRepository.save(patient));
     }
 
     @Override
@@ -36,12 +41,8 @@ public class PatientServiceImp implements PatientService {
     }
 
     public PatientDTO convertPatientDTO(Patient p) {
-
-        PatientDTO.setName(p.getName());
-        PatientDTO.setPassword(p.getPassword());
-        PatientDTO.setEmail(p.getEmail());
-        savePatient(p);
-        return new PatientDTO();
+        return new PatientDTO(p.getName(), p.getEmail(), p.getPassword(),
+                p.getRepeatPassword());
     }
 
 }

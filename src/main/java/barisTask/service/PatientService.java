@@ -1,11 +1,11 @@
 package barisTask.service;
 
+import barisTask.DTO.PatientDTO;
 import barisTask.model.Patient;
-import java.util.Optional;
 
 public interface PatientService {
 
-    public Patient savePatient(Patient item);
+    public PatientDTO savePatient(Patient item);
 
     public Patient findPatientId(String item);
 

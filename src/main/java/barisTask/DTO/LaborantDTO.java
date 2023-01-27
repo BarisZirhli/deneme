@@ -1,15 +1,14 @@
 package barisTask.DTO;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
-public class PatientDTO {
+
+public class LaborantDTO {
 
     private String name;
+    private String id;
     private String email;
     private String password;
-    private String repeatPassword;
 
 }

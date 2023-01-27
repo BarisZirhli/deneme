@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class reportDTO {
+public class ReportDTO {
 
     private String id;
     private Date date;
