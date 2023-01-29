@@ -35,7 +35,7 @@
                         <div class="card container-md" style="border-radius: 25px; background-color:#c2f3ff;opacity: 95%;">
                             <div class="card-body p-5 container mt-2">
                                 <h2 class="text-uppercase text-center mt-3">Create an Account</h2>
-                                <form th:action="@{/register}"th:object="${patientDTO}" method="POST">
+                                <form th:action="@{/register}"th:object="${patient}" method="post">
 
                                     <div class="form-inline mb-3">
                                         <input type="text" id="form3Example1cg" 
@@ -65,7 +65,7 @@
                                         <input type="password" id="form3Example4cdg"
                                                class="form-control form-control-md"
                                                placeholder="Please Enter Your Password Again"
-                                               th:field="*{repeatPassword}"
+                                               th:="*{repeatPassword}"
                                                th:=if"${#fields.hasError('isPasswordEquals')}"/>
                                         <label class="form-label" for="form3Example4cdg">Repeat your password</label>
                                     </div>

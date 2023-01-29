@@ -5,16 +5,15 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import barisTask.model.Patient;
 import org.apache.jackrabbit.uuid.UUID;
-import barisTask.repository.PatientRepository;
 import java.util.Optional;
-import org.springframework.beans.factory.annotation.Autowired;
+import barisTask.repository.PatientRepository;
 
 @Service
 @NoArgsConstructor
 public class PatientServiceImp implements PatientService {
 
     private PatientRepository PatientRepository;
-    private PatientDTO PatientDTO;
+ 
 
     @Override
     public Patient findPatientId(String x) {
@@ -23,13 +22,16 @@ public class PatientServiceImp implements PatientService {
         return patient;
     }
 
+    public PatientDTO convertPatientDTO(Patient p) {
+        return new PatientDTO(p.getName(), p.getEmail(), p.getPassword());
+    }
+    
     @Override
     public PatientDTO savePatient(Patient x) {
         Patient patient = new Patient(x.getName(),
                 x.getEmail(),
                 x.getPassword(),
-                x.getId(),
-                x.getRepeatPassword());
+                x.getId());
         x.setId(UUID.randomUUID().toString());
 
         return convertPatientDTO(PatientRepository.save(patient));
@@ -40,9 +42,5 @@ public class PatientServiceImp implements PatientService {
         PatientRepository.delete(x);
     }
 
-    public PatientDTO convertPatientDTO(Patient p) {
-        return new PatientDTO(p.getName(), p.getEmail(), p.getPassword(),
-                p.getRepeatPassword());
-    }
 
 }
