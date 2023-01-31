@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import barisTask.repository.PatientRepository;
 
 @Controller
 
@@ -20,20 +19,19 @@ public class PatientController {
     private PatientServiceImp patienceService;
 
     @GetMapping("/register")
-    public String registerGET(Model model) {
-        Patient p = new Patient();
+    public String registerGET(Model model, Patient p) {
         PatientDTO patientDTO = patienceService.convertPatientDTO(p);
         model.addAttribute("patient", patientDTO);
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerPOST(@Valid PatientDTO p, BindingResult result, Patient patient,Model model) {
+    public String registerPOST(@Valid PatientDTO p, BindingResult result, Patient patient, Model model) {
 
         if (result.hasErrors()) {
             return "register";
         } else {
-             model.addAttribute("patient", p);
+            model.addAttribute("patient", p);
             patienceService.savePatient(patient);
             model.addAttribute("successMsg", "Your Account Registered Successfully");
             //r.save(patient);

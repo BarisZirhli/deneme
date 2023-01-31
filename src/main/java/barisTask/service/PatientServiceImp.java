@@ -29,7 +29,7 @@ public class PatientServiceImp implements PatientService {
 
     @Override
     public PatientDTO savePatient(Patient x) {
-        Patient patient = new Patient(x.getId(), x.getName(), x.getEmail(), x.getPassword());
+        Patient patient = new Patient(x.getName(), x.getEmail(), x.getPassword());
         patient.setId(UUID.randomUUID().toString());
         return convertPatientDTO(patientRepository.save(patient));
     }

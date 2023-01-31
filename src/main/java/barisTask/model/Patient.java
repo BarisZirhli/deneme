@@ -30,8 +30,8 @@ public class Patient {
     private String email;
     private String password;
 
-    public Patient(String id, String name, String email, String password) {
-        this.id = id;
+    public Patient(String name, String email, String password) {
+   
         this.name = name;
         this.email = email;
         this.password = password;
