@@ -24,7 +24,7 @@ public class Patient {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
-  
+
     private String id;
     private String name;
     private String email;
@@ -35,9 +35,8 @@ public class Patient {
         this.name = name;
         this.email = email;
         this.password = password;
-       
     }
-  
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Report> report;
 }

@@ -31,7 +31,6 @@ public class Report {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
     private String id;
     private String patientName;
-    private String patientlastName;
     private String patientId;
     private String diseaseDefination;
     @Temporal(TemporalType.DATE)
