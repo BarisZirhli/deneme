@@ -23,15 +23,16 @@ public class PatientServiceImp implements PatientService {
         return patient;
     }
 
-    public PatientDTO convertPatientDTO(Patient p) {
-        return new PatientDTO(p.getName(), p.getEmail(), p.getPassword());
+    public Patient convertPatientDTO(PatientDTO p) {
+        return new Patient(p.getName(), p.getEmail(), p.getPassword());
     }
 
     @Override
-    public PatientDTO savePatient(Patient x) {
-        Patient patient = new Patient(x.getName(), x.getEmail(), x.getPassword());
+    public void savePatient(PatientDTO x) {
+
+        Patient patient = convertPatientDTO(x);
         patient.setId(UUID.randomUUID().toString());
-        return convertPatientDTO(patientRepository.save(patient));
+        patientRepository.save(patient);
     }
 
     @Override

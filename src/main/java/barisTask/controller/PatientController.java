@@ -2,6 +2,7 @@ package barisTask.controller;
 
 import barisTask.DTO.PatientDTO;
 import barisTask.model.Patient;
+import barisTask.repository.PatientRepository;
 import barisTask.service.PatientServiceImp;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -23,35 +25,31 @@ public class PatientController {
     private PatientServiceImp patienceService;
 
     @GetMapping("/register")
-    public String registerGET(Patient p, Model model) {
-        PatientDTO patientDTO = patienceService.convertPatientDTO(p);
-        model.addAttribute("patient", patientDTO);
-        LOGGER.info("what is this " + p);
+    public String registerGET(Model model) {
+        PatientDTO DTO = new PatientDTO();
+        model.addAttribute("Patient", DTO);
+        //  LOGGER.info("what is this " + DTO);
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerPOST(@Valid PatientDTO p, BindingResult result, Patient patient, Model model) {
+    public String registerPOST(@Valid PatientDTO p, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
+            model.addAttribute("Patient", p);
             LOGGER.info("what is this " + p);
             return "register";
         } else {
-            patienceService.savePatient(patient);
-            model.addAttribute("successMsg", "Your Account Registered Successfully");
-            model.addAttribute("patient", p);
-            LOGGER.info("what is this " + p);
-            LOGGER.info("what is this " + patient);
 
-//r.save(patient);
+            patienceService.savePatient(p);
+            model.addAttribute("successMsg", "Your Account Registered Successfully");
+            //    LOGGER.info("what is this " + p);
             return "login";
         }
     }
 
     @GetMapping("/")
-    public String loginGET(Model model, String id) {
-        //Patient p = new Patient();
-
+    public String loginGET(Model model) {
         return "login";
     }
 

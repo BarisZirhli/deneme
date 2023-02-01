@@ -5,7 +5,7 @@ import barisTask.model.Patient;
 
 public interface PatientService {
 
-    public PatientDTO savePatient(Patient item);
+    public void savePatient(PatientDTO item);
 
     public Patient findPatientId(String item);
 

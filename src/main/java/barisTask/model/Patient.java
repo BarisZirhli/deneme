@@ -14,12 +14,15 @@ import java.util.HashSet;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Table(name = "patients")
-@Data
+@Setter
+@Getter
 @NoArgsConstructor
 public class Patient {
 
