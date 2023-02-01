@@ -18,16 +18,14 @@ public class PatientDTO {
         this.password = password;
     }
 
-     
-    @Size(min = 5, max = 25, message = "min 3 characters max 25 characters should be ")
-    @NotNull(message = "not okay email name ")
+    @Size(min = 10, max = 25, message = "min 10 characters max 25 characters should be ")
+    @NotNull(message = "not okay name")
     private String name;
     @NotBlank(message = "not okay")
     @Email(regexp = "^(.+)@(.+)$", message = "not okay email")
     private String email;
-    @NotBlank(message = "not okay")
+    @NotBlank(message = "not okay password")
     @Size(min = 6, max = 25)
-    
     private String password;
 
     @NotBlank(message = "not okay")

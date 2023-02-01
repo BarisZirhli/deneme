@@ -36,7 +36,7 @@
                                             <div class="card container-md" style="border-radius: 25px; background-color:#c2f3ff;opacity: 95%;">
                                                 <div class="card-body p-5 container mt-2">
                                                     <h2 class="text-uppercase text-center mt-3">Create an Account</h2>
-                                                    <form action="/" th:action="@{/register}"th:object="${Patient}" method="post">
+                                                    <form th:action="@{/register/save}"th:object="${Patient}" method="post">
 
                                                         <div class="form-inline mb-3">
                                                             <label class="form-label" for="form3Example1cg">Your Name</label>
@@ -44,7 +44,8 @@
                                                                    class="form-control form-control-md"
                                                                    th:field="*{name}"
                                                                    placeholder="Please Enter Your Name">
-                                                                <div class="alert alert-warning" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">name error</div>
+                                                                <p th:errors = "*{name}" class="text-danger"
+                                                                   th:if="${#fields.hasErrors('name')}"></p>
                                                         </div>
 
                                                         <div class="form-inline mb-3">
@@ -53,7 +54,8 @@
                                                                    class="form-control form-control-md"
                                                                    th:field="*{email}"
                                                                    placeholder="Please Enter Your Email">
-                                                                <div class="alert alert-warning" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</div>
+                                                                <p th:errors = "*{email}" class="text-danger"
+                                                                   th:if="${#fields.hasErrors('email')}"></p>
                                                         </div>
 
                                                         <div class="form-inline mb-3">
@@ -62,8 +64,8 @@
                                                                    class="form-control form-control-md"
                                                                    th:field="*{password}"
                                                                    placeholder="Please Enter Your Password">
-                                                               <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
-					class="alert alert-danger"></p> 
+                                                                <p th:errors = "*{password}" class="text-danger"
+                                                                   th:if="${#fields.hasErrors('password')}"></p>
                                                         </div>
 
                                                         <div class="form-inline mb-3">
@@ -72,7 +74,8 @@
                                                                    class="form-control form-control-md"
                                                                    placeholder="Please Enter Your Password Again"
                                                                    th:field = "*{repeatPassword}">
-                                                                <div class="alert alert-warning" th:if="${#fields.hasErrors('repeatPassword')}" th:errors="*{repeatPassword}">password error</div>
+                                                                <p th:errors = "*{repeatPassword}" class="text-danger"
+                                                                   th:if="${#fields.hasErrors('repeatPassword')}"></p>
                                                         </div>
 
 

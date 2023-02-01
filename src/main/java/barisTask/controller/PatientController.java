@@ -25,26 +25,25 @@ public class PatientController {
     private PatientServiceImp patienceService;
 
     @GetMapping("/register")
-    public String registerGET(Model model) {
+    public String registerFormGET(Model model) {
         PatientDTO DTO = new PatientDTO();
         model.addAttribute("Patient", DTO);
-        //  LOGGER.info("what is this " + DTO);
         return "register";
     }
 
-    @PostMapping("/register")
-    public String registerPOST(@Valid PatientDTO p, BindingResult result, Model model) {
+    @PostMapping("/register/save")
+    public String registerFormSavePOST(@Valid @ModelAttribute("Patient") PatientDTO patientDTO, BindingResult result, Model model) {
 
         if (result.hasErrors()) {
-            model.addAttribute("Patient", p);
-            LOGGER.info("what is this " + p);
-            return "register";
+            model.addAttribute("Patient", patientDTO);
+            LOGGER.info("what is this " + patientDTO);
+            return "/register";
         } else {
 
-            patienceService.savePatient(p);
+            patienceService.savePatient(patientDTO);
             model.addAttribute("successMsg", "Your Account Registered Successfully");
-            //    LOGGER.info("what is this " + p);
-            return "login";
+
+            return "redirect:/";
         }
     }
 
@@ -58,12 +57,4 @@ public class PatientController {
 
         return "patientDashboard";
     }
-    /* @GetMapping("/login/{id}")
-    public String login(@PathVariable(value = "id") String id, Model model) {
-        Patient p = patienceService.findPatientId(id);
-        PatientDTO patientDTO = patienceService.convertPatientDTO(p);
-        model.addAttribute("login", patientDTO);
-        return "login";
-    }
-     */
 }
