@@ -6,8 +6,11 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.HashSet;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +21,6 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "patients")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Patient {
 
     @Id
@@ -31,12 +33,15 @@ public class Patient {
     private String password;
 
     public Patient(String name, String email, String password) {
-   
+
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Report> report;
+    /* @JoinTable(name = "reports",
+            joinColumns = @JoinColumn(name = "patients_id"),
+            inverseJoinColumns = @JoinColumn(name = "reports_id"))*/
+    private HashSet<Report> report;
 }

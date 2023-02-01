@@ -4,24 +4,29 @@ import barisTask.DTO.PatientDTO;
 import barisTask.model.Patient;
 import barisTask.service.PatientServiceImp;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-
+@Validated
 public class PatientController {
 
+    public static final Logger LOGGER = LoggerFactory.getLogger(PatientController.class);
     @Autowired
     private PatientServiceImp patienceService;
 
     @GetMapping("/register")
-    public String registerGET(Model model, Patient p) {
+    public String registerGET(Patient p, Model model) {
         PatientDTO patientDTO = patienceService.convertPatientDTO(p);
         model.addAttribute("patient", patientDTO);
+        LOGGER.info("what is this " + p);
         return "register";
     }
 
@@ -29,12 +34,16 @@ public class PatientController {
     public String registerPOST(@Valid PatientDTO p, BindingResult result, Patient patient, Model model) {
 
         if (result.hasErrors()) {
+            LOGGER.info("what is this " + p);
             return "register";
         } else {
-            model.addAttribute("patient", p);
             patienceService.savePatient(patient);
             model.addAttribute("successMsg", "Your Account Registered Successfully");
-            //r.save(patient);
+            model.addAttribute("patient", p);
+            LOGGER.info("what is this " + p);
+            LOGGER.info("what is this " + patient);
+
+//r.save(patient);
             return "login";
         }
     }
