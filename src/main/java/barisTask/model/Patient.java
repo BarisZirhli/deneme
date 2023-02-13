@@ -1,6 +1,7 @@
 package barisTask.model;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,10 +25,15 @@ public class Patient {
     @Id
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
-
     private String id;
+    
+    @Column(nullable=false)
     private String name;
+    
+    @Column(nullable=false)
     private String email;
+    
+    @Column(nullable=false)
     private String password;
 
     public Patient(String name, String email, String password) {

@@ -34,39 +34,39 @@
                         <div class="card " style="border-radius: 25px; background-color:#c2f3ff;opacity: 95%;">
                             <div class="card-body p-5 container-md">
                                 <div th:if ="${successMsg}">
-                                <div class="col-md-12" align="center">
-                                 
-                                    <div class="alert alert-success col-md-6" role="alert" >
-                                         <p th:text="${successMsg}" >
+                                    <div class="col-md-12" align="center">
+
+                                        <div class="alert alert-success col-md-6" role="alert" >
+                                            <p th:text="${successMsg}" >
+                                        </div>
                                     </div>
                                 </div>
-                                </div>
-                            <h2 class="text-uppercase text-center mb-5">Login</h2>
-                            <form th:action="@{/login}"th:object="${patient}" method="POST">
+                                <h2 class="text-uppercase text-center mb-5">Login</h2>
+                                <form th:action="@{/login}"th:object="${patient}" method="POST">
 
-                                <div class="form-outline mb-4">
-                                    <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example3cg">Your Email</label>
-                                </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="email" id="form3Example3cg" class="form-control form-control-lg" />
+                                        <label class="form-label" for="form3Example3cg">Your Email</label>
+                                    </div>
 
-                                <div class="form-outline mb-4">
-                                    <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
-                                    <label class="form-label" for="form3Example4cg">Password</label>
-                                </div>
+                                    <div class="form-outline mb-4">
+                                        <input type="password" id="form3Example4cg" class="form-control form-control-lg" />
+                                        <label class="form-label" for="form3Example4cg">Password</label>
+                                    </div>
 
-                                <div class="d-flex justify-content-center">
-                                    <button type="submit"
-                                            class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login</button>
-                                </div>
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit"
+                                                class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Login</button>
+                                    </div>
 
-                                <p class="text-center  py-2">Haven't an account? <a href="register"
-                                                                                    class="fw-bold text-body"><u>Register here</u></a></p>
-                            </form>
+                                    <p class="text-center  py-2">Haven't an account? <a href="/register"
+                                                                                        class="fw-bold text-body"><u>Register here</u></a></p>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 </body>

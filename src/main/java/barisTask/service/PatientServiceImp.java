@@ -8,6 +8,7 @@ import org.apache.jackrabbit.uuid.UUID;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import barisTask.repository.PatientRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Service
 @NoArgsConstructor
@@ -15,6 +16,8 @@ public class PatientServiceImp implements PatientService {
 
     @Autowired
     private PatientRepository patientRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public Patient findPatientId(String x) {
@@ -23,15 +26,12 @@ public class PatientServiceImp implements PatientService {
         return patient;
     }
 
-    public Patient convertPatientDTO(PatientDTO p) {
-        return new Patient(p.getName(), p.getEmail(), p.getPassword());
-    }
-
     @Override
     public void savePatient(PatientDTO x) {
-
-        Patient patient = convertPatientDTO(x);
+        
+        Patient patient = new Patient(x.getName(), x.getEmail(), x.getPassword());
         patient.setId(UUID.randomUUID().toString());
+        patient.setPassword(passwordEncoder.encode(x.getPassword()));
         patientRepository.save(patient);
     }
 

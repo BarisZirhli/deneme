@@ -1,15 +1,18 @@
 package barisTask.configuration;
 
-
 import java.util.Collections;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.servlet.resource.ResourceHttpRequestHandler;
 
 @Configuration
-public class FaviconConfiguration {
+
+
+public class Configurations {
 
     @Bean
     public SimpleUrlHandlerMapping customFaviconHandlerMapping() {
@@ -26,5 +29,10 @@ public class FaviconConfiguration {
                 = new ResourceHttpRequestHandler();
         requestHandler.setLocations(Collections.singletonList(new ClassPathResource("/")));
         return requestHandler;
+    }
+
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
     }
 }

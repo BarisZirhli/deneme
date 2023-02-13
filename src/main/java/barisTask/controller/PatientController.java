@@ -2,7 +2,6 @@ package barisTask.controller;
 
 import barisTask.DTO.PatientDTO;
 import barisTask.model.Patient;
-import barisTask.repository.PatientRepository;
 import barisTask.service.PatientServiceImp;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -11,13 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-@Validated
 public class PatientController {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(PatientController.class);
@@ -38,13 +35,12 @@ public class PatientController {
             model.addAttribute("Patient", patientDTO);
             LOGGER.info("what is this " + patientDTO);
             return "/register";
-        } else {
-
-            patienceService.savePatient(patientDTO);
-            model.addAttribute("successMsg", "Your Account Registered Successfully");
-
-            return "redirect:/";
         }
+
+        patienceService.savePatient(patientDTO);
+        model.addAttribute("successMsg", "Your Account Registered Successfully");
+        return "login";
+
     }
 
     @GetMapping("/")
