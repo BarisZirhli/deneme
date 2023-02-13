@@ -1,11 +1,10 @@
 package barisTask.DTO;
 
-import javax.validation.constraints.AssertTrue;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.AssertTrue;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,22 +22,22 @@ public class PatientDTO {
     @NotEmpty(message = "not okay name")
     private String name;
     
-    @NotBlank(message = "not okay")
+    @NotEmpty(message = "not okay")
     @Email(regexp = "^(.+)@(.+)$", message = "not okay email")
     private String email;
     
     @NotEmpty(message = "not okay password")
-    @Size(min = 6, max = 25)
+    @Size(min = 6, max = 25,message = "min 6 characters max 25 characters should be")
     private String password;
-    
 
     @NotEmpty(message = "not okay")
-    @NotNull
+    private String repeatPassword;
+    /*
     @AssertTrue
     public boolean isPasswordsEqual() {
         return (password.equalsIgnoreCase(null) || repeatPassword.equalsIgnoreCase(null))
                 ? false : password.equals(repeatPassword);
     }
-    private String repeatPassword;
+    */
 
 }
