@@ -74,8 +74,8 @@
                                                                    class="form-control form-control-md"
                                                                    placeholder="Please Enter Your Password Again"
                                                                    th:field = "*{repeatPassword}">
-                                                                <p th:errors = "*{repeatPassword}" class="text-danger"
-                                                                   th:if="${#fields.hasErrors('repeatPassword')}"></p>
+                                                                <p th:errors = "*{PasswordEqual}" class="text-danger"
+                                                                   th:if="${#fields.hasErrors('PasswordsEqual')}"></p>
                                                         </div>
 
 

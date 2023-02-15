@@ -17,27 +17,26 @@ public class PatientDTO {
         this.email = email;
         this.password = password;
     }
-
+    @NotNull
     @Size(min = 10, max = 25, message = "min 10 characters max 25 characters should be ")
     @NotEmpty(message = "not okay name")
     private String name;
-    
+    @NotNull
     @NotEmpty(message = "not okay")
     @Email(regexp = "^(.+)@(.+)$", message = "not okay email")
     private String email;
-    
+    @NotNull
     @NotEmpty(message = "not okay password")
-    @Size(min = 6, max = 25,message = "min 6 characters max 25 characters should be")
+    @Size(min = 6, max = 25, message = "min 6 characters max 25 characters should be")
     private String password;
-
+    @NotNull
     @NotEmpty(message = "not okay")
     private String repeatPassword;
-    /*
+
     @AssertTrue
     public boolean isPasswordsEqual() {
         return (password.equalsIgnoreCase(null) || repeatPassword.equalsIgnoreCase(null))
                 ? false : password.equals(repeatPassword);
     }
-    */
 
 }

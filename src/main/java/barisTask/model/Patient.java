@@ -7,6 +7,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.HashSet;
@@ -26,14 +28,14 @@ public class Patient {
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "uuid2")
     private String id;
-    
-    @Column(nullable=false)
+
+    @Column(nullable = false, length = 20)
     private String name;
-    
-    @Column(nullable=false)
+
+    @Column(nullable = false)
     private String email;
-    
-    @Column(nullable=false)
+
+    @Column(nullable = false,length=25)
     private String password;
 
     public Patient(String name, String email, String password) {
@@ -44,8 +46,8 @@ public class Patient {
     }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    /* @JoinTable(name = "reports",
+     @JoinTable(name = "reports",
             joinColumns = @JoinColumn(name = "patients_id"),
-            inverseJoinColumns = @JoinColumn(name = "reports_id"))*/
+            inverseJoinColumns = @JoinColumn(name = "reports_id"))
     private HashSet<Report> report;
 }
